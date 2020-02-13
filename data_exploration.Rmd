@@ -1,0 +1,43 @@
+---
+title: "Data_exploration"
+author: "Robert Saldivar"
+date: "February 12, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The purpose of this document is to explore the data and to see how it might look before putting it into the shiny app. This is also a good place to wrangle data.
+
+```{r}
+#Loading the packages and will be used to wrangle the data
+
+library(tidyverse)
+library(here)
+
+kobe <- read_csv("data", "data.csv")
+
+```
+
+
+```{r}
+#Renaming the shots made flag so that the written as made or missed
+
+kobe_wrangle <- kobe %>%
+  mutate(shot_made = ifelse(shot_made_flag  > 0, "scored", "missed")) 
+
+```
+
+
+
+```{r}
+#This is going to visualize the graph of shots taken
+
+shot_graph <- ggplot(kobe_wrangle, aes(x = loc_x, y = loc_y)) +
+  geom_point(aes(color = shot_made))
+
+shot_graph
+```
+
