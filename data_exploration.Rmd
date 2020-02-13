@@ -35,7 +35,7 @@ kobe_wrangle <- kobe %>%
 ```{r}
 #This is going to visualize the graph of shots taken
 
-shot_graph <- ggplot(kobe_wrangle, aes(x = loc_x, y = loc_y)) +
+shot_graph <- ggplot(kobe_wrangle, aes(x = lon, y = lat)) +
   geom_point(aes(color = shot_made))
 
 shot_graph

@@ -14,7 +14,8 @@ library(here)
 
 #reading in the data
 kobe <- read_csv(here("data", "data.csv")) %>%
-  drop_na() #This is dropping the na values in the shots_made_flag category
+  drop_na() %>%
+  mutate(shot_made = ifelse(shot_made_flag  > 0, "scored", "missed")) #This is dropping the na values in the shots_made_flag category
 
 # Define UI for application 
 ui <- fluidPage(
@@ -28,9 +29,9 @@ ui <- fluidPage(
    # Sidebar with a Select Input 
    sidebarLayout(
       sidebarPanel(
-         selectInput(inputId = "opponent_select",
-                     label = "Choose an Opponent",
-                     choices = unique(kobe$opponent)
+         selectInput(inputId = "shot_type_select",
+                     label = "Choose an shot type:",
+                     choices = unique(kobe$combined_shot_type)
            
          )
       ),
@@ -48,14 +49,14 @@ server <- function(input, output) {
   #This is going to be the reactive object called shots_taken that will react to who the opponent is 
   shots_taken <- reactive({
     kobe %>%
-      filter == input$opponent_select
+      filter == input$shot_type_select
   })
   
   #This is going to be the output that will render a plot of where kobe took shots from and on the court
   output$shot_map <- renderPlot({
     ggplot(shots_taken(),
-           aes(x = loc_x, y = loc_y)) +
-      geom_point(aes(color = shot_made_flag))
+           aes(x = lon, y = lat)) +
+      geom_point(aes(color = shot_made))
   })
 }
 
