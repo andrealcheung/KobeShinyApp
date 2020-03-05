@@ -16,6 +16,7 @@ The purpose of this document is to explore the data and to see how it might look
 
 library(tidyverse)
 library(here)
+library(ballr)
 
 kobe <- read_csv("data", "data.csv")
 
@@ -39,5 +40,9 @@ shot_graph <- ggplot(kobe_wrangle, aes(x = lon, y = lat)) +
   geom_point(aes(color = shot_made))
 
 shot_graph
+```
+
+```{r}
+
 ```
 
