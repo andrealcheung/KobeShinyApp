@@ -17,7 +17,7 @@ ui <- fluidPage(
   sidebarLayout(#creates sidebar and main panel
     sidebarPanel(sliderInput(inputId = "game_score", 
                              label = h3("Choose Number of Points"), 
-                             min = 0, max = 22, 
+                             min = 0, max = 80, 
                              value = c(5, 15))),
     
     mainPanel(#"Kobe Game Table", 
