@@ -22,8 +22,7 @@ court <- knitr::include_graphics("images/nbacourt.jpg")
 #Defining the ui as a multi-tab app
 
 ui <- navbarPage("Kobe Bryant",
-                 tabPanel("First tab"),
-                 tabPanel("Second tab",
+                 tabPanel("Second tab", 
                           sidebarLayout(
                             sidebarPanel(
                               selectInput(inputId = "season_select",
@@ -53,7 +52,15 @@ server <- function(input, output) {
       xlim(-250, 250) +
       ylim(-50, 420) +
       scale_color_manual(breaks = c("missed", "scored"),
-                         values = c("yellow", "purple"))
+                         values = c("yellow", "purple"))+
+      theme(axis.line=element_blank(),
+            axis.text.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            panel.background=element_blank())
+  
     
   })
   
@@ -72,7 +79,14 @@ server <- function(input, output) {
       xlim(-250, 250) +
       ylim(-50, 420) +
       scale_color_manual(breaks = c("missed", "scored"),
-                         values = c("yellow", "purple"))
+                         values = c("yellow", "purple"))+
+      theme(axis.line=element_blank(),
+            axis.text.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            panel.background=element_blank())
     
   })
   

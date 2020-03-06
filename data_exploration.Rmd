@@ -14,11 +14,12 @@ The purpose of this document is to explore the data and to see how it might look
 ```{r}
 #Loading the packages and will be used to wrangle the data
 
+
 library(tidyverse)
 library(here)
 library(ballr)
 
-kobe <- read_csv("data", "data.csv")
+kobe <- read_csv("data.csv")
 
 ```
 
@@ -42,7 +43,14 @@ shot_graph <- ggplot(kobe_wrangle, aes(x = lon, y = lat)) +
 shot_graph
 ```
 
+Shots made per game
 ```{r}
 
+kobeshots <- kobe  %>% 
+  drop_na() %>% 
+  group_by(game_id) %>% 
+  summarize(
+    sum(shot_made_flag)
+  )
 ```
 
