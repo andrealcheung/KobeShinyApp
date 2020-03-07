@@ -4,7 +4,7 @@ library(shinythemes)
 
 ####ccs theme######
 css <- HTML(" body {
-    background-color: #F6BD01; color : 500394
+    background-color: #FDBA21; color : 500394
 }")
 
 
@@ -23,8 +23,8 @@ ui <- fluidPage(
     mainPanel(
       #Kobe to Shaq Alley Oop
       (tabsetPanel(type = "tab", #create different tabs
-                   tabPanel("Watch", HTML('<iframe width="620" height="415" src="https://www.youtube.com/embed/JZGEzREaYRA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')), #video embbed
-                   tabPanel("What Happened", textOutput("What Happened")),
+                   tabPanel("What Happened"),
+                   tabPanel("Watch"), #video embbed
                    tabPanel("Official Game Recap", textOutput("recap")))
       ))))
 
@@ -33,7 +33,7 @@ ui <- fluidPage(
 ########Server#########
 server <- shinyServer(function(input, output){
 
-  
+output$selectmoment <- renderUI()
   
   
   

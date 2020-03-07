@@ -8,7 +8,7 @@ library(dplyr)
 library(kableExtra)
 
 #Read in the Kobe Bryant data. 
-kobe <- read_csv("kobescores.csv")
+kobe <- read_csv("kobepoints2.csv")
 
 #Create 'ui' "User Interface
 #creates a page that adjusts to the size of the browser window
@@ -36,14 +36,13 @@ server <- function(input, output) {
   sliderValues <- reactive({
     kobe_filter <- 
       kobe %>%
-      filter(game_score %in% (input$game_score[1]: input$game_score[2])) #%>%
-    kobe_filter
+      filter(game_score %in% (input$game_score[1]: input$game_score[2])) #%>% 
     #input$game_score
-    #gamescore_table <- 
-    #kable(kobe_filter, col.names = c("Game Date", "Opponent", "Kobe's Total Score")) %>%
-    #kable_styling(
-    #font_size = 15,
-    #bootstrap_options = c("striped", "hover", "condensed")
+   # gamescore_table <- 
+      #kable(kobe_filter, col.names = c("Game Date", "Opponent", "Kobe's Total Score")) %>%
+      #kable_styling(
+      #font_size = 15,
+     # bootstrap_options = c("striped", "hover", "condensed")
     #)
   })
   
