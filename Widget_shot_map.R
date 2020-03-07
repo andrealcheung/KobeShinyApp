@@ -59,7 +59,8 @@ server <- function(input, output) {
             axis.ticks=element_blank(),
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
-            panel.background=element_blank())
+            panel.background=element_blank(),
+            aspect.ratio = 1)
   
     
   })
@@ -86,7 +87,8 @@ server <- function(input, output) {
             axis.ticks=element_blank(),
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
-            panel.background=element_blank())
+            panel.background=element_blank(),
+            aspect.ratio = 1)
     
   })
   
