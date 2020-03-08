@@ -48,7 +48,7 @@ ui <- fluidRow(
              fluidRow(
                column(2),
                column(8,
-                      shiny::HTML("<center><h4>Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Chartlotte Hornets at the age of 17, he was the first guard to ever be drafted directly out of high school. The same day he was traded to the Los Angeles Lakers, where he would remain for the next 20 years and become a symbol for Los Angeles and one of the greatest basketball players in the history of the game.")
+                      shiny::HTML("<center><h4>Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Chartlotte Hornets at the age of 17, he was the first guard to ever be drafted directly out of high school. The same day he was traded to the Los Angeles Lakers, where he would remain for the next 20 years and become a symbol for Los Angeles and one of the greatest basketball players in the history of the game...")
                ),
                column(2)
              ),
