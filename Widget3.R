@@ -31,7 +31,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   
-  
+######Shot Map##########  
   #output$
   sliderValues <- reactive({
     kobe_filter <- kobe %>%
@@ -50,7 +50,15 @@ server <- function(input, output) {
   output$gamescore_table <- renderTable({
     sliderValues()
   })
+
+  
+  
+  
+  
 }
+
+
+
 
 #combine the ui and the server into an app
 shinyApp(ui, server)
