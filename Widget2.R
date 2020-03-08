@@ -33,7 +33,9 @@ ui <- fluidPage(
 ########Server#########
 server <- shinyServer(function(input, output){
 
-output$selectmoment <- renderUI()
+kobevideo1 <- renderUI(
+  
+)
   
   
   

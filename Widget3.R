@@ -34,8 +34,7 @@ server <- function(input, output) {
   
   #output$
   sliderValues <- reactive({
-    kobe_filter <- 
-      kobe %>%
+    kobe_filter <- kobe %>%
       filter(game_score %in% (input$game_score[1]: input$game_score[2])) #%>% 
     #input$game_score
    # gamescore_table <- 

@@ -14,6 +14,10 @@ The purpose of this document is to explore the data and to see how it might look
 ```{r}
 #Loading the packages and will be used to wrangle the data
 
+install.packages("jpeg")
+install.packages("grid")
+install.packages("RCurl")
+
 
 library(tidyverse)
 library(here)
@@ -71,4 +75,28 @@ rename("date" = yr_mo_day) %>%
 
 write_csv(kobepoints, "kobepoints2.csv") #write the csv 
 ```
+
+
+
+```{r}
+ ggplot(data = kobe, aes(x = loc_x, y = loc_y)) +
+      geom_point(aes(color = shot_made)) + 
+      xlim(-250, 250) +
+      ylim(-50, 420) +
+      scale_color_manual(breaks = c("missed", "scored"),
+                         values = c("goldenrod1", "purple3"))+
+      theme(axis.line=element_blank(),
+            axis.text.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            panel.background=element_blank(),
+            aspect.ratio = 1, 
+            plot.background = element_rect(fill = "black")) 
+```
+
+
+
+
 
