@@ -14,5 +14,5 @@ Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Chartlot
 
 
 
-This project will explore all 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to. 
+This project will explore all 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60 points game against the Utah Jazz. 
 

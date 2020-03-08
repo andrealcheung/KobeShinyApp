@@ -28,16 +28,22 @@ court <- knitr::include_graphics("images/nbacourt.jpg")
 ui <- fluidRow(
   navbarPage(
     theme =shinytheme("journal"),
-    title=div(img(src="logo.png",height = 20, width = 35), "Kobe Bryant"),
-    fluid = TRUE, 
+    title=div(img(src="logo.png",height = 20, width = 35), "Kobe Bryant"), 
     collapsible = TRUE,
                 tabPanel("About",
-                         column(6, img(src="kobe 3.png",height = 800, width = 525))
-                      
+          
+                         column(3),
+                         column(6,img(src="kobe 3.png",height = 600, width = 365),
+                         column(3),
+                         column(12, shiny::HTML("<br><h1><center>Kobe Bryant</h1> <br>")),
+                         column(12, shiny::HTML("<h4>Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Chartlotte Hornets at the age of 17, he was the first guard to ever be drafted directly out of high school. The same day he was traded to the Los Angeles Lakers, where he would remain for the next 20 years and become a symbol for Los Angeles and one of the greatest basketball players in the history of the game. </h4><br>"),
+                                shiny::HTML("<h4>This project will explore all 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60 points game against the Utah Jazz.<h4><br>")),
                          
-                         
-                         ),
-                tabPanel("Second tab", 
+                         )),
+                
+    
+    
+                tabPanel("Shot Explorer", 
                           sidebarLayout(
                             sidebarPanel(
                               selectInput(inputId = "season_select",
@@ -50,12 +56,12 @@ ui <- fluidRow(
                                           label = "Choose a Shot Type",
                                           choices = unique(kobe$combined_shot_type))
                             ),
-                            mainPanel("Shot's Taken",
+                            mainPanel("Explore all of Kobe's shots he ever attempted.",
                                       plotOutput(outputId = "shot_map_career"),
                                       plotOutput(outputId = "shot_map_reactive", height = "100%")
                           )),
-                 tabPanel("Third tab"),
-                 tabPanel("Fourth tab"))
+                 
+                 
   ))
 
 
@@ -118,6 +124,9 @@ server <- function(input, output) {
             aspect.ratio = 1)
     
   }, height = 600, width = 600)
+  
+  
+
   
 
 }
