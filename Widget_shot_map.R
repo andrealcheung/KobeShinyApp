@@ -143,7 +143,8 @@ server <- function(input, output) {
       geom_point(aes(color = shot_made)) + 
       xlim(-250, 250) +
       ylim(-50, 420) +
-      scale_color_manual(breaks = c("missed", "scored"),
+      scale_color_manual(name = "Shot Result",
+                         breaks = c("Missed", "Scored"),
                          values = c("goldenrod1", "purple3"))+
       theme(axis.line=element_blank(),
             axis.text.x=element_blank(),
@@ -151,7 +152,8 @@ server <- function(input, output) {
             axis.ticks=element_blank(),
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
-            panel.background=element_blank()
+            panel.background=element_blank(),
+            legend.background = element_rect(fill = NULL)
             ) 
     
 
@@ -179,7 +181,8 @@ server <- function(input, output) {
       geom_point(aes(color = shot_made))  + 
       xlim(-250, 250) +
       ylim(-50, 420) +
-      scale_color_manual(breaks = c("missed", "scored"),
+      scale_color_manual(name = "Shot Result",
+                         breaks = c("Missed", "Scored"),
                          values = c("goldenrod1", "purple3"))+
       theme(axis.line=element_blank(),
             axis.text.x=element_blank(),
