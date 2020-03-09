@@ -122,7 +122,7 @@ server <- function(input, output) {
     
   
     
-  }, height = 800, width = 800 )
+  }, height = 400, width = 400 )
   
   shots_taken <- reactive({
     kobe_filter <- kobe %>%
@@ -132,6 +132,8 @@ server <- function(input, output) {
     
     kobe_filter   
   })
+  
+  
   
   output$shot_map_reactive <- renderPlot({
     courtImg.URL <- "https://thedatagame.files.wordpress.com/2016/03/nba_court.jpg"
