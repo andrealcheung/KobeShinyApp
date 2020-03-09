@@ -22,7 +22,8 @@ ui <- fluidRow(
                  )),
                mainPanel(
                  (tabsetPanel(type = "tab", #create different tabs
-                                      tabPanel("What Happened"),
+                                      tabPanel("What Happened",
+                                               imageOutput("happen_select")),
                                       tabPanel("Watch",
                                                htmlOutput("video_select")), #video embbed
                                       tabPanel("Official Game Recap",
@@ -36,28 +37,28 @@ ui <- fluidRow(
 
 
 
-########Server for 
+########Server###### 
 server <- shinyServer(function(input, output){
 
-#####Video Tab####
-  
+#######What Happened########
   
 
   
-recap<- reactive({
+happened <- reactive({
   
   if(input$select_moment == "Kobe to Shaq Alley Oop"){
-    return(tags$iframe(src = "https://stats.nba.com/", height = 380, width = 400,
-                scrolling = "auto"))}
+    img(src = "kobe to shaq.jpg")}
 })
 
 
 
 
-output$recap_select <- renderUI(
-  recap()
-  
+output$happen_select <- renderImage(
+  happened()
 )
+
+
+########Video Tab#############
 
 video<- reactive({
   
@@ -84,8 +85,6 @@ output$video_select <- renderUI(
 )
 
 })
-
-
 
 
 
