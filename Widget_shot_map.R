@@ -16,7 +16,7 @@ library(RCurl)
 #Reading in the data, this is going to be commented out at first
 kobe <- read_csv("data.csv") %>%
   drop_na() %>%
-  mutate(shot_made = ifelse(shot_made_flag > 0, "scored", "missed")
+  mutate(shot_made = ifelse(shot_made_flag > 0, "Scored", "Missed")
   )
 kobe$loc_x <- as.numeric(as.character(kobe$loc_x))
 kobe$loc_y <- as.numeric(as.character(kobe$loc_y))
@@ -155,6 +155,7 @@ server <- function(input, output) {
             axis.title.y=element_blank(),
             panel.background=element_blank(),
             aspect.ratio = 1)
+      
     
   }, height = 600, width = 600)
   
