@@ -13,7 +13,7 @@ library(RCurl)
 #Reading in the data, this is going to be commented out at first
 kobe <- read_csv("data.csv") %>%
   drop_na() %>%
-  mutate(shot_made = ifelse(shot_made_flag > 0, "scored", "missed")
+  mutate(shot_made = ifelse(shot_made_flag > 0, "Scored", "Missed")
   )
 kobe$loc_x <- as.numeric(as.character(kobe$loc_x))
 kobe$loc_y <- as.numeric(as.character(kobe$loc_y))
@@ -147,7 +147,8 @@ server <- function(input, output) {
       geom_point(aes(color = shot_made)) + 
       xlim(-250, 250) +
       ylim(-50, 420) +
-      scale_color_manual(breaks = c("missed", "scored"),
+      scale_color_manual(name = "Shot Result",
+                         breaks = c("Missed", "Scored"),
                          values = c("goldenrod1", "purple3"))+
       theme(axis.line=element_blank(),
             axis.text.x=element_blank(),
@@ -155,10 +156,14 @@ server <- function(input, output) {
             axis.ticks=element_blank(),
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
-            panel.background=element_blank()
+            panel.background=element_blank(),
+            legend.background = element_blank(),
+            legend.key = element_blank()
             ) 
     
+
   }, height = 800, width = 800 )
+
   
   shots_taken <- reactive({
     kobe_filter <- kobe %>%
@@ -168,6 +173,8 @@ server <- function(input, output) {
     
     kobe_filter   
   })
+  
+  
   
   output$shot_map_reactive <- renderPlot({
     courtImg.URL <- "https://thedatagame.files.wordpress.com/2016/03/nba_court.jpg"
@@ -179,8 +186,9 @@ server <- function(input, output) {
       geom_point(aes(color = shot_made))  + 
       xlim(-250, 250) +
       ylim(-50, 420) +
-      scale_color_manual(breaks = c("missed", "scored"),
-                         values = c("goldenrod1", "purple3"))+
+      scale_color_manual(name = "Shot Result",
+                         breaks = c("Missed", "Scored"),
+                         values = c("goldenrod1", "purple3")) +
       theme(axis.line=element_blank(),
             axis.text.x=element_blank(),
             axis.text.y=element_blank(),
@@ -188,7 +196,11 @@ server <- function(input, output) {
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
             panel.background=element_blank(),
-            aspect.ratio = 1)
+            legend.background = element_blank(),
+            legend.key = element_blank(),
+            aspect.ratio = 1) 
+     
+      
     
   }, height = 800, width = 800)
   
@@ -201,7 +213,8 @@ server <- function(input, output) {
 kobe2 <- read_csv("kobepoints2.csv")
   sliderValues <- reactive({
     kobe_filter <- kobe2 %>%
-      filter(game_score %in% (input$game_score[1]: input$game_score[2])) #%>% 
+      filter(game_score %in% (input$game_score[1]: input$game_score[2])) %>% 
+      rename("Game Date"= game_date, "Opponent"= opponent, "Game Score"= game_score)
     #input$game_score
     # gamescore_table <- 
     #kable(kobe_filter, col.names = c("Game Date", "Opponent", "Kobe's Total Score")) %>%
@@ -215,7 +228,8 @@ kobe2 <- read_csv("kobepoints2.csv")
   #Show the values in an HTML table
   output$gamescore_table <- renderTable({
     sliderValues()
-  })
+  }
+           )
   
 ########Top 5 Moments
 
