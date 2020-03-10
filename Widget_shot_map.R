@@ -204,7 +204,8 @@ server <- function(input, output) {
 kobe2 <- read_csv("kobepoints2.csv")
   sliderValues <- reactive({
     kobe_filter <- kobe2 %>%
-      filter(game_score %in% (input$game_score[1]: input$game_score[2])) #%>% 
+      filter(game_score %in% (input$game_score[1]: input$game_score[2])) %>% 
+      rename("Game Date"= game_date, "Opponent"= opponent, "Game Score"= game_score)
     #input$game_score
     # gamescore_table <- 
     #kable(kobe_filter, col.names = c("Game Date", "Opponent", "Kobe's Total Score")) %>%
@@ -218,7 +219,8 @@ kobe2 <- read_csv("kobepoints2.csv")
   #Show the values in an HTML table
   output$gamescore_table <- renderTable({
     sliderValues()
-  })
+  }
+           )
   
 ########Top 5 Moments
 
