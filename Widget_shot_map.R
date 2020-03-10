@@ -55,7 +55,7 @@ ui <- fluidRow(
                column(8,
                       shiny::HTML("<center><h4>This project will explore 25,699 of his 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60 points game against the Utah Jazz.<h4><br>
                                   
-                                  In this interactive application, you can f")
+                                  In this interactive application, you can find a map of the different types of shots that Kobe against opposing teams, across all of his professional career.")
                ),
                column(2)
              )),
