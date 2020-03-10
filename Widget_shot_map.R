@@ -152,8 +152,7 @@ server <- function(input, output) {
             axis.ticks=element_blank(),
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
-            panel.background=element_blank(),
-            legend.background = element_rect(fill = NULL)
+            panel.background=element_blank()
             ) 
     
 
