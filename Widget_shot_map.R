@@ -23,8 +23,10 @@ court <- knitr::include_graphics("images/nbacourt.jpg")
 ##########User Interface############
 
 ui <- fluidRow(
+  
   navbarPage(
     theme =shinytheme("journal"),
+    themeSelector(),
     title=div(img(src="logo.png",height = 20, width = 35), "Kobe Bryant"), 
     collapsible = TRUE,
     ###About tab
@@ -55,7 +57,9 @@ ui <- fluidRow(
                column(8,
                       shiny::HTML("<center><h4>This project will explore 25,699 of his 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60 points game against the Utah Jazz.<h4><br>
                                   
-                                  In this interactive application, you can f")
+                                  
+                                  
+                                  Write over this") #######edit here 
                ),
                column(2)
              )),
