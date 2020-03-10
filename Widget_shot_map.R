@@ -154,7 +154,9 @@ server <- function(input, output) {
             axis.title.y=element_blank(),
             panel.background=element_blank(),
             legend.background = element_blank(),
-            legend.key = element_blank()
+            legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12)
             ) 
     
 
@@ -179,7 +181,7 @@ server <- function(input, output) {
     
     ggplot(data = shots_taken(), aes(x = loc_x, y = loc_y)) +
       annotation_custom(court, -250, 250, -50, 420)+
-      geom_point(aes(color = shot_made))  + 
+      geom_point(aes(color = shot_made), size = 4)  + 
       xlim(-250, 250) +
       ylim(-50, 420) +
       scale_color_manual(name = "Shot Result",
@@ -194,6 +196,8 @@ server <- function(input, output) {
             panel.background=element_blank(),
             legend.background = element_blank(),
             legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12),
             aspect.ratio = 1) 
      
       
