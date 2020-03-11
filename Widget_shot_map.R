@@ -46,7 +46,7 @@ ui <- fluidRow(
              fluidRow(
                column(2),
                column(8,
-                      shiny::HTML("<center><h4>Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Chartlotte Hornets at the age of 17, he was the first guard to ever be drafted directly out of high school. The same day he was traded to the Los Angeles Lakers, where he would remain for the next 20 years and become a symbol for Los Angeles and one of the greatest basketball players in the history of the game.")
+                      shiny::HTML("<center><h4>Kobe Bryant was an embodiment of American sports. Picked in 1996 by the Charlotte Hornets at the age of 17, he was the first guard to ever be drafted directly out of high school. The same day he was traded to the Los Angeles Lakers, where he would remain for the next 20 years and become a symbol for Los Angeles and one of the greatest basketball players in the history of the game.")
                ),
                column(2)
              ),
@@ -54,11 +54,8 @@ ui <- fluidRow(
              fluidRow(
                column(2),
                column(8,
-                      shiny::HTML("<center><h4>This project will explore 25,699 of his 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60 points game against the Utah Jazz.<h4><br>
-                                  
-                                  
-                                  
-                                  Write over this") #######edit here 
+                      shiny::HTML("<center><h4>This project will explore 25,699 of the 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60-point game against the Utah Jazz.<h4><br>In this interactive application, you can find a map of the different types of shots that Kobe against opposing teams, across all of his professional career.")
+
                ),
                column(2)
              )),
@@ -157,7 +154,9 @@ server <- function(input, output) {
             axis.title.y=element_blank(),
             panel.background=element_blank(),
             legend.background = element_blank(),
-            legend.key = element_blank()
+            legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12)
             ) 
     
 
@@ -182,7 +181,7 @@ server <- function(input, output) {
     
     ggplot(data = shots_taken(), aes(x = loc_x, y = loc_y)) +
       annotation_custom(court, -250, 250, -50, 420)+
-      geom_point(aes(color = shot_made))  + 
+      geom_point(aes(color = shot_made), size = 4)  + 
       xlim(-250, 250) +
       ylim(-50, 420) +
       scale_color_manual(name = "Shot Result",
@@ -197,6 +196,8 @@ server <- function(input, output) {
             panel.background=element_blank(),
             legend.background = element_blank(),
             legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12),
             aspect.ratio = 1) 
      
       
@@ -214,13 +215,7 @@ kobe2 <- read_csv("kobepoints2.csv")
     kobe_filter <- kobe2 %>%
       filter(game_score %in% (input$game_score[1]: input$game_score[2])) %>% 
       rename("Game Date"= game_date, "Opponent"= opponent, "Game Score"= game_score)
-    #input$game_score
-    # gamescore_table <- 
-    #kable(kobe_filter, col.names = c("Game Date", "Opponent", "Kobe's Total Score")) %>%
-    #kable_styling(
-    #font_size = 15,
-    # bootstrap_options = c("striped", "hover", "condensed")
-    #)
+    
   })
   
   
