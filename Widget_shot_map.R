@@ -26,7 +26,6 @@ ui <- fluidRow(
   
   navbarPage(
     theme =shinytheme("journal"),
-    themeSelector(),
     title=div(img(src="logo.png",height = 20, width = 35), "Kobe Bryant"), 
     collapsible = TRUE,
     ###About tab
