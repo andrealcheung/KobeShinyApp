@@ -101,8 +101,10 @@ ui <- fluidRow(
                                           choices = unique(kobe$combined_shot_type))
                             ),
                             mainPanel("Explore all of Kobe's shots he ever attempted.",
-                                      plotOutput(outputId = "shot_map_career"),
-                                      plotOutput(outputId = "shot_map_reactive"))
+                                      plotOutput(outputId = "shot_map_career", inline = TRUE),
+                                      br(),
+                                      br(),
+                                      plotOutput(outputId = "shot_map_reactive", inline = TRUE))
                             )),
 
 
