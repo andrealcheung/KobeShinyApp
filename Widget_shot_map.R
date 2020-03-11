@@ -55,7 +55,7 @@ ui <- fluidRow(
                column(8,
                       shiny::HTML("<center><h4>This project will explore 25,699 of the 30,699 field goals attempted by Kobe Bryant, from his first scoreless game against the Minnesota Timberwolves to his final 60-point game against the Utah Jazz.<h4><br>
                                   
-                                  In this interactive application, you can f")
+                                  In this interactive application, you can find a map of the different types of shots that Kobe against opposing teams, across all of his professional career.")
                ),
                column(2)
              )),
@@ -153,7 +153,10 @@ server <- function(input, output) {
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
             panel.background=element_blank(),
-            legend.background = element_rect(fill = NULL)
+            legend.background = element_blank(),
+            legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12)
             ) 
     
 
@@ -178,12 +181,12 @@ server <- function(input, output) {
     
     ggplot(data = shots_taken(), aes(x = loc_x, y = loc_y)) +
       annotation_custom(court, -250, 250, -50, 420)+
-      geom_point(aes(color = shot_made))  + 
+      geom_point(aes(color = shot_made), size = 4)  + 
       xlim(-250, 250) +
       ylim(-50, 420) +
       scale_color_manual(name = "Shot Result",
                          breaks = c("Missed", "Scored"),
-                         values = c("goldenrod1", "purple3"))+
+                         values = c("goldenrod1", "purple3")) +
       theme(axis.line=element_blank(),
             axis.text.x=element_blank(),
             axis.text.y=element_blank(),
@@ -191,7 +194,12 @@ server <- function(input, output) {
             axis.title.x=element_blank(),
             axis.title.y=element_blank(),
             panel.background=element_blank(),
-            aspect.ratio = 1)
+            legend.background = element_blank(),
+            legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12),
+            aspect.ratio = 1) 
+     
       
     
   }, height = 800, width = 800)
