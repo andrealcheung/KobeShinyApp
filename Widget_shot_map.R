@@ -13,8 +13,15 @@ library(RCurl)
 #Reading in the data, this is going to be commented out at first
 kobe <- read_csv("data.csv") %>%
   drop_na() %>%
-  mutate(shot_made = ifelse(shot_made_flag > 0, "Scored", "Missed")
-  )
+  mutate(shot_made = ifelse(shot_made_flag > 0, "Scored", "Missed")) 
+         
+kobe3 <- read_csv("data.csv") %>%
+  drop_na() %>%           
+  group_by(shot_zone_range) %>%
+  mutate(Accuracy=mean(shot_made_flag))
+
+
+
 kobe$loc_x <- as.numeric(as.character(kobe$loc_x))
 kobe$loc_y <- as.numeric(as.character(kobe$loc_y))
 
@@ -83,6 +90,7 @@ ui <- fluidRow(
                             )),
 
 
+
 ######Total Points in a Game Tab
                 tabPanel("Total Points Scored in a Game", 
                 sidebarLayout(#creates sidebar and main panel
@@ -121,6 +129,26 @@ tabPanel("Top 5 Moments",
            )
            
          )),
+######Accurary Expoloring Tab
+tabPanel("Accuracy", 
+         shiny::HTML("<h5>"),
+         sidebarLayout(
+           sidebarPanel(
+             selectInput(inputId = "season_select",
+                         label = "Choose a Season",
+                         choices = unique(kobe$season)),
+             selectInput(inputId = "opponent_select",
+                         label = "Choose an Opponent",
+                         choices = unique(kobe$opponent)),
+             selectInput(inputId = "shot_type_select",
+                         label = "Choose a Shot Type",
+                         choices = unique(kobe$combined_shot_type))
+           ),
+           mainPanel("Explore this visualization of Kobe's accuracy based on shot zone range",
+                     plotOutput(outputId = "accuracy_reactive"))
+         )),
+
+
                 
 ######References Tab
                 tabPanel("References",
@@ -141,6 +169,43 @@ tabPanel("Top 5 Moments",
 server <- function(input, output) {
 
   
+accuracy <- reactive({
+  kobe_filter2 <- kobe3 %>%
+      filter(season %in% (input$season_select)) %>%
+      filter(opponent %in% (input$opponent_select)) %>%
+      filter(combined_shot_type %in% (input$shot_type_select))
+  kobe_filter2 
+      
+  })
+
+# Accuracy by shot zone range
+  
+  output$accuracy_reactive <- renderPlot({
+    courtImg.URL <- "https://thedatagame.files.wordpress.com/2016/03/nba_court.jpg"
+    court <- rasterGrob(readJPEG(getURLContent(courtImg.URL)),
+                        width=unit(1,"npc"), height=unit(1,"npc"))
+    
+    ggplot(data = accuracy(), aes(x = loc_x, y = loc_y,as.factor(color = Accuracy))) +
+      annotation_custom(court, -250, 250, -50, 420)+
+      geom_point() + 
+      xlim(-250, 250) +
+      ylim(-50, 420) +
+      theme(axis.line=element_blank(),
+            axis.text.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks=element_blank(),
+            axis.title.x=element_blank(),
+            axis.title.y=element_blank(),
+            panel.background=element_blank(),
+            legend.background = element_blank(),
+            legend.key = element_blank(),
+            legend.title = element_text(size = 15),
+            legend.text = element_text(size = 12),
+            aspect.ratio = 1) 
+    
+    
+    
+  }, height = 800, width = 800)
   
   
   
