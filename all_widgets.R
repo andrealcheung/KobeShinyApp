@@ -17,8 +17,8 @@ kobe <- read_csv("data.csv") %>%
          
 kobe3 <- read_csv("data.csv") %>%
   drop_na() %>%           
-  group_by(shot_zone_range) %>%
-  mutate(Accuracy=mean(shot_made_flag))
+  group_by(shot_zone_range, season, opponent, combined_shot_type, loc_x, loc_y, shot_made_flag) %>%
+  summarize(Accuracy=mean(shot_made_flag))
 
 
 
@@ -170,11 +170,10 @@ server <- function(input, output) {
 
   
 accuracy <- reactive({
-  kobe_filter2 <- kobe3 %>%
+  kobe3 %>%
       filter(season %in% (input$season_select)) %>%
       filter(opponent %in% (input$opponent_select)) %>%
       filter(combined_shot_type %in% (input$shot_type_select))
-  kobe_filter2 
       
   })
 
