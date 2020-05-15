@@ -342,7 +342,7 @@ kobe2 <- read_csv("kobepoints2.csv")
   recap<- reactive({
     
     if(input$select_moment == "Kobe to Shaq Alley Oop"){
-        HTML('<iframe width="680" height="470" src="https://www.futurefootwearproject.com/"></iframe>')
+        HTML('<iframe width="680" height="470" src="https://www.basketball-reference.com/boxscores/200006040LAL.html/"></iframe>')
       }
     
     
